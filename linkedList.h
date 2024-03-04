@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #pragma once
 
 typedef struct Node{
@@ -27,9 +26,6 @@ void AppendLinkedList(LinkedList* l, int v);
 
 void AppfrontLinkedList(LinkedList* l, int v);
 
-=======
-#pragma once
-
 typedef struct Node{
     int value;
     struct Node* prev;
@@ -55,5 +51,3 @@ LinkedList* CreateLinkedList(int v);
 void AppendLinkedList(LinkedList* l, int v);
 
 void AppfrontLinkedList(LinkedList* l, int v);
-
->>>>>>> 6e00e9ebcdacdfeeb10c30a91404a7f881bc9f37

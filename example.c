@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <stdio.h>
 #include "linkedList.h"
 
@@ -19,10 +18,6 @@ int main(){
     return 0;
 }
 
-=======
-#include <stdio.h>
-#include "linkedList.h"
-
 int main(){
     //LinkedList: type is the type of a linked list
     LinkedList* l = CreateLinkedList(20);
@@ -39,5 +34,3 @@ int main(){
     }
     return 0;
 }
-
->>>>>>> 6e00e9ebcdacdfeeb10c30a91404a7f881bc9f37

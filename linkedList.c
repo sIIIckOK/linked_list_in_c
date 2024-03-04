@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <stdlib.h>
 #include <stdio.h>
 #include "linkedList.h"
@@ -69,10 +68,6 @@ void AppfrontLinkedList(LinkedList* l, int v){
     l->head = newNode;
     l->length++;
 }
-=======
-#include <stdlib.h>
-#include <stdio.h>
-#include "linkedList.h"
 
 Node* CreateNode(int v){
     Node* pn = (Node*)malloc(sizeof(Node));
@@ -140,4 +135,3 @@ void AppfrontLinkedList(LinkedList* l, int v){
     l->head = newNode;
     l->length++;
 }
->>>>>>> 6e00e9ebcdacdfeeb10c30a91404a7f881bc9f37
