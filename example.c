@@ -4,8 +4,8 @@
 int main(){
     //LinkedList: type is the type of a linked list
     LinkedList* l = CreateLinkedList(3, 1, 2, 3);
-    //CreateLinkedList: is a variadic function
-    //CreateLinkedList(number of elements, ...elements)
+    //CreateLinkedList: is a variadic function 
+    //CreateLinkedList: linkedlist(number of passed elements, ...elements)
 
     //AppendLinkedList: adds element to the end of linked list
     AppendLinkedList(l, 5);
@@ -18,7 +18,11 @@ int main(){
     //DeleteNode: deletes element from the list(using index)
     //returns deleted value(int)
     int v = DeleteNode(l, 3);
+    PrintAllElements(l);
 
+    //ExtendLinkedList: extends the linked 
+    //its a variadic function: void(linked list, number of passed elements, ...elements)
+    ExtendLinkedList(l, 2, 30, 20);
     PrintAllElements(l);
     return 0;
 }
