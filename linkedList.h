@@ -20,8 +20,18 @@ Node* GetElementFromNode(Node* h, int i);
 
 Node* GetElement(LinkedList* l, int i);
 
-LinkedList* CreateLinkedList(int v);
+LinkedList* CreateLinkedListNonVariadic(int v);
+
+LinkedList* CreateLinkedList(int count, ...);
 
 void AppendLinkedList(LinkedList* l, int v);
 
 void AppfrontLinkedList(LinkedList* l, int v);
+
+int DeleteNode(LinkedList* l, int i);
+
+void PrintAllElements(LinkedList* l);
+
+void ExtendLinkedList(LinkedList* l, int v, ...);
+
+LinkedList* CreateLinkedList(int count, ...);

@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdarg.h>
 #include "linkedList.h"
 
 Node* CreateNode(int v){
@@ -42,7 +43,7 @@ Node* GetElement(LinkedList* l, int i){
     return nextNode;
 }
 
-LinkedList* CreateLinkedList(int v){
+LinkedList* CreateLinkedListNonVariadic(int v){
     Node* n = CreateNode(v);
     LinkedList* l = malloc(sizeof(LinkedList));
     l->head = n;
@@ -68,3 +69,55 @@ void AppfrontLinkedList(LinkedList* l, int v){
     l->head = newNode;
     l->length++;
 }
+
+int DeleteNode(LinkedList* l, int i){
+    Node* n = GetElement(l, i);
+    int popValue = n->value;
+    Node* nextN = n->next;
+    Node* prevN = n->prev;
+    nextN->prev = prevN;
+    prevN->next = nextN;
+    free(n);
+    l->length--;
+    return popValue;
+}
+
+void PrintAllElements(LinkedList* l){
+    printf("---------------\n");
+    for (int i = 0; i < l->length; i++){
+        Node* n = GetElement(l, i);
+        int v = n->value;
+        printf("index: %d value: %d\n", i, v);
+    }
+    printf("---------------\n");
+}
+
+void ExtendLinkedList(LinkedList* l, int count, ...){
+    va_list args;
+    va_start(args, count);
+    for (int i = 0; i < count; i++){
+        int a = va_arg(args, int);
+        AppendLinkedList(l, a);
+    }
+    va_end(args);
+}
+
+LinkedList* CreateLinkedList(int count, ...){
+    LinkedList* l = malloc(sizeof(LinkedList));
+    l->length = 1;
+    va_list args;
+    va_start(args, count);
+    int first = va_arg(args, int);
+    Node* n = CreateNode(first);
+    l->head = n;
+    for(int i = 0; i < count-1; i++){
+        int rest = va_arg(args, int);
+        Node* temp = AppendNodeToNode(n, rest);
+        n = temp;
+        l->length++;
+    }
+    l->tail = n;
+    va_end(args);
+    return l;
+}
+
