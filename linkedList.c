@@ -21,6 +21,9 @@ Node* AppendNodeToNode(Node* prevNode, int v){
 
 Node* GetElementFromNode(Node* h, int i){ 
     Node* nextNode = h; 
+    if (i < 0){
+        printf("[ERROR]: trying access free'd list");
+    }
     while(i > 0){
         if (nextNode-> next == NULL){
             printf("[ERROR]: element out of bounds");
@@ -33,9 +36,13 @@ Node* GetElementFromNode(Node* h, int i){
 
 Node* GetElement(LinkedList* l, int i){
     Node* nextNode = l->head; 
+    if (i < 0){
+        printf("[ERROR]: trying access free'd list");
+    }
     while(i > 0){
         if (nextNode-> next == NULL){
             printf("[ERROR]: element out of bounds");
+            return NULL;
         }
         nextNode = nextNode->next;
         i--;    
@@ -86,6 +93,10 @@ void PrintAllElements(LinkedList* l){
     printf("---------------\n");
     for (int i = 0; i < l->length; i++){
         Node* n = GetElement(l, i);
+        if (n == NULL){
+            printf("[ERROR]: error while accessing element");
+            return;
+        }
         int v = n->value;
         printf("index: %d value: %d\n", i, v);
     }
@@ -121,3 +132,11 @@ LinkedList* CreateLinkedList(int count, ...){
     return l;
 }
 
+void FreeLinkedList(LinkedList* l){
+    int length = l->length;
+    for (int i = 0; i < length; i++){
+        Node* n = GetElement(l, i);
+        free(n);
+    }
+    free(l);
+}

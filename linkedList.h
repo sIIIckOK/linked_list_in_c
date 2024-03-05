@@ -35,3 +35,5 @@ void PrintAllElements(LinkedList* l);
 void ExtendLinkedList(LinkedList* l, int v, ...);
 
 LinkedList* CreateLinkedList(int count, ...);
+
+void FreeLinkedList(LinkedList* l);

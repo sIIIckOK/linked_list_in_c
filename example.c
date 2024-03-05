@@ -13,7 +13,7 @@ int main(){
     AppfrontLinkedList(l, 6);
     
     //PrintAllElements prints all the elements on to the stdout
-    PrintAllElements(l);
+    //PrintAllElements(l);
 
     //DeleteNode: deletes element from the list(using index)
     //returns deleted value(int)
@@ -24,6 +24,10 @@ int main(){
     //its a variadic function: void(linked list, number of passed elements, ...elements)
     ExtendLinkedList(l, 2, 30, 20);
     PrintAllElements(l);
-    return 0;
+
+    //Frees all the elements in the linked list
+    FreeLinkedList(l);
+    //it is users responsibility to free the memory
+   return 0;
 }
 
