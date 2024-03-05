@@ -9,5 +9,5 @@ gcc -o llexample ./example.c ./linkedList.c
 
 Run:
 ```
-gcc -o llexample ./example.c ./linkedList.c
+./llexample
 ```
