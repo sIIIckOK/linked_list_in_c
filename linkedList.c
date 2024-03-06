@@ -1,12 +1,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <string.h>
 #include "linkedList.h"
 
 Node* CreateNode(int v){
     Node* pn = (Node*)malloc(sizeof(Node));
     pn->value = v;
-    pn->prev= NULL;
+    pn->prev = NULL;
     pn->next = NULL;
     return pn;
 }
@@ -21,25 +22,27 @@ Node* AppendNodeToNode(Node* prevNode, int v){
 
 Node* GetElementFromNode(Node* h, int i){ 
     Node* nextNode = h; 
-    while(i > 0){
+    int tempI = i;
+    while(tempI > 0){
         if (nextNode-> next == NULL){
-            printf("[ERROR]: element out of bounds");
+            printf("[ERROR]: in GetElementFromNode element out of bounds, index: %d\n", i);
         }
         nextNode = nextNode->next;
-        i--;    
+        tempI--;    
     }
     return nextNode;
 }
 
 Node* GetElement(LinkedList* l, int i){
     Node* nextNode = l->head; 
-    while(i > 0){
+    int tempI = i;
+    while(tempI > 0){
         if (nextNode-> next == NULL){
-            printf("[ERROR]: element out of bounds");
+            printf("[ERROR]: in GetElement element out of bounds, index: %d\n", i);
             return NULL;
         }
         nextNode = nextNode->next;
-        i--;    
+        tempI--;    
     }
     return nextNode;
 }
@@ -88,7 +91,7 @@ void PrintAllElements(LinkedList* l){
     for (int i = 0; i < l->length; i++){
         Node* n = GetElement(l, i);
         if (n == NULL){
-            printf("[ERROR]: error while accessing element");
+            printf("[ERROR]: in PrintAllElements error while accessing element, index: %d\n", i);
             return;
         }
         int v = n->value;
@@ -134,3 +137,47 @@ void FreeLinkedList(LinkedList* l){
     }
     free(l);
 }
+
+void SwapElements(LinkedList* l, int i1, int i2){
+    if (i1 == i2) return;
+    Node* n1 = GetElement(l, i1);
+    Node* n2 = GetElement(l, i2);
+
+    if (n1 == l->head){
+        n2->prev->next = n1;
+        l->head = n2;
+        n1->prev = n2->prev;
+        n2->prev = NULL;
+    } else if (n2 == l->head){
+        n1->prev->next = n2;
+        l->head = n1;
+        n2->prev = n1->prev;
+        n1->prev = NULL;
+    } else {
+        n1->prev->next = n2;
+        n2->prev->next = n1;
+        Node* tempPrev = n1->prev;
+        n1->prev = n2->prev;
+        n2->prev = tempPrev;
+    }
+
+    if (n1 == l->tail){
+        n2->next->prev = n1;
+        l->tail = n2;
+        n1->next = n2->next;
+        n2->next = NULL;
+    } else if (n2 == l->tail){
+        n1->next->prev = n2;
+        l->tail = n1;
+        n2->next = n1->next;
+        n1->next = NULL;
+    } else {
+        n1->next->prev = n2;
+        n2->next->prev = n1;
+        Node* tempNext = n1->next;
+        n1->next = n2->next;
+        n2->next = tempNext;
+    }
+
+}
+

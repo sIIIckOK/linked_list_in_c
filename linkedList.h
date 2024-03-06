@@ -37,3 +37,7 @@ void ExtendLinkedList(LinkedList* l, int v, ...);
 LinkedList* CreateLinkedList(int count, ...);
 
 void FreeLinkedList(LinkedList* l);
+
+void SwapElements(LinkedList* l, int i1, int i2);
+
+void SwapElements(LinkedList* l, int i1, int i2);
