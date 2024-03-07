@@ -181,7 +181,7 @@ void SwapElements(LinkedList* l, int i1, int i2){
 
 }
 
-int IndexOf(LinkedList* l, int v){
+int IndexOfByValue(LinkedList* l, int v){
     int len = l->length;
     for (int i = 0; i < l->length; i++){
         Node* e = GetElement(l, i);
@@ -191,5 +191,37 @@ int IndexOf(LinkedList* l, int v){
     }
     return -1;
 }
+
+int IndexOf(LinkedList* l, Node* n){
+    for (int i = 0; i < l->length; i++){
+        Node* e = GetElement(l, i);
+        if (e->next == n){
+            return i+1;
+        }
+    }
+    return -1;
+}
+
+
+void BubbleSort(LinkedList* l){
+    for (int j = 0; j < l->length-1; j++){
+        for (int i = 0; i < l->length-1; i++){
+            Node* e = GetElement(l, i);
+            Node* eNext = GetElement(l, i+1);
+            if (e->value > eNext->value){
+                SwapElements(l, i, i+1);
+            }
+        }
+    }
+}
+
+
+int main(){
+    LinkedList* l = CreateLinkedList(4, 1, 7, 4, 2);
+    PrintAllElements(l);
+    BubbleSort(l);
+    PrintAllElements(l);
+}
+
 
 
