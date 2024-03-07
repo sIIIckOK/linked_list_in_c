@@ -181,3 +181,15 @@ void SwapElements(LinkedList* l, int i1, int i2){
 
 }
 
+int IndexOf(LinkedList* l, int v){
+    int len = l->length;
+    for (int i = 0; i < l->length; i++){
+        Node* e = GetElement(l, i);
+        if (e->value==v){
+            return i;
+        }
+    }
+    return -1;
+}
+
+
