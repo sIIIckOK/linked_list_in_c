@@ -215,13 +215,3 @@ void BubbleSort(LinkedList* l){
     }
 }
 
-
-int main(){
-    LinkedList* l = CreateLinkedList(4, 1, 7, 4, 2);
-    PrintAllElements(l);
-    BubbleSort(l);
-    PrintAllElements(l);
-}
-
-
-

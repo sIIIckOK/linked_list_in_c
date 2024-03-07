@@ -41,3 +41,10 @@ void FreeLinkedList(LinkedList* l);
 void SwapElements(LinkedList* l, int i1, int i2);
 
 void SwapElements(LinkedList* l, int i1, int i2);
+
+int IndexOfByValue(LinkedList* l, int v);
+
+int IndexOf(LinkedList* l, Node* n);
+
+void BubbleSort(LinkedList* l);
+
