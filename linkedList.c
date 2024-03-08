@@ -334,11 +334,3 @@ void QuickSort(LinkedList* l){
     QuickSortUnWrapped(l, 0, l->length-1);
 }
 
-int main(){
-    LinkedList* l = CreateLinkedList(8, 7, 6, 5, 4, 3, 2, 1, 0);
-    PrintLinkedList(l);
-    QuickSort(l);
-    PrintLinkedList(l);
-}
-
-
