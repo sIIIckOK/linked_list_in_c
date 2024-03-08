@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <string.h>
+#include <stdbool.h>
 #include "linkedList.h"
-
 Node* CreateNode(int v){
     Node* pn = (Node*)malloc(sizeof(Node));
     pn->value = v;
@@ -100,6 +100,16 @@ void PrintAllElements(LinkedList* l){
     printf("---------------\n");
 }
 
+void PrintLinkedList(LinkedList* l){
+    int len = l->length;
+    printf("[ ");
+    for (int i = 0; i < len; i++){
+        Node* n = GetElement(l, i);
+        printf("%d ", n->value);
+    } 
+    printf("]\n");
+}
+
 void ExtendLinkedList(LinkedList* l, int count, ...){
     va_list args;
     va_start(args, count);
@@ -126,6 +136,23 @@ LinkedList* CreateLinkedList(int count, ...){
     }
     l->tail = n;
     va_end(args);
+    return l;
+}
+
+LinkedList* CreateLinkedListFromNode(Node* head, Node* tail){
+    int len= 0;
+    Node* n = head;
+    while(1){
+        len++; 
+        if (n->next == tail || n->next == NULL){
+            break;
+        }
+        n = n->next;
+    }
+    LinkedList* l = malloc(sizeof(LinkedList));
+    l->length = len;
+    l->head = head;
+    l->tail = tail;
     return l;
 }
 
@@ -214,4 +241,104 @@ void BubbleSort(LinkedList* l){
         }
     }
 }
+
+void InsertAt(LinkedList* l, int index, int v){
+    Node* n = CreateNode(v);
+
+    if (index < l->length){
+        Node* nextN = GetElement(l, index);        
+        n->next = nextN;
+        nextN->prev = n;
+    }
+    if (index > 0){
+        Node* prevN = GetElement(l, index-1);        
+        n->prev = prevN;
+        prevN->next = n;
+    }
+    l->length++;
+}
+
+LinkedList* CreateView(LinkedList* l, int startI, int endI){
+    LinkedList* newL = malloc(sizeof(LinkedList));
+    newL->head = GetElement(l, startI);
+    newL->tail = GetElement(l, endI);
+    newL->length = endI-startI;
+    return newL;
+}
+
+int WeakSort(LinkedList* l, int pivotIndex){
+    int len = l->length;
+    Node* p = GetElement(l, pivotIndex);
+
+    int markerI = pivotIndex;
+    Node* marker = GetElement(l, pivotIndex);
+
+    bool trigger = true;
+    for(int i = 0; i < len-1; i++){
+        Node* currN = GetElement(l, i);
+        if (p->value < currN->value && trigger == true){
+            markerI = i;
+            marker = GetElement(l, markerI);
+            trigger = false; 
+        }
+        if (p->value > currN->value && trigger == false){
+            SwapElements(l, markerI, i);
+            markerI++;
+            marker = GetElement(l, markerI);
+        }
+    }
+    SwapElements(l, markerI, pivotIndex);
+    return markerI;
+}
+
+int WeakSortWithRange(LinkedList* l, int lowIndex, int highIndex){
+    int pivotIndex = highIndex;
+    Node* p = GetElement(l, pivotIndex);
+
+    int markerI = pivotIndex;
+    Node* marker = GetElement(l, pivotIndex);
+
+    bool trigger = true;
+    for(int i = lowIndex; i < highIndex; i++){
+        Node* currN = GetElement(l, i);
+        if (p->value < currN->value && trigger == true){
+            markerI = i;
+            marker = GetElement(l, markerI);
+            trigger = false; 
+        }
+        if (p->value > currN->value && trigger == false){
+            SwapElements(l, markerI, i);
+            markerI++;
+            marker = GetElement(l, markerI);
+        }
+    }
+    SwapElements(l, markerI, pivotIndex);
+    return markerI;
+}
+
+
+
+void QuickSortUnWrapped(LinkedList* l, int lowIndex, int highIndex){
+    if (lowIndex >= highIndex){
+        return;
+    }
+    int pivotI = WeakSortWithRange(l, lowIndex, highIndex); 
+
+    QuickSortUnWrapped(l, lowIndex, pivotI-1);
+    QuickSortUnWrapped(l, pivotI+1, highIndex);
+    return;
+}
+
+void QuickSort(LinkedList* l){
+    int pivotI = WeakSortWithRange(l, 0, l->length-1); 
+    QuickSortUnWrapped(l, 0, l->length-1);
+}
+
+int main(){
+    LinkedList* l = CreateLinkedList(8, 7, 6, 5, 4, 3, 2, 1, 0);
+    PrintLinkedList(l);
+    QuickSort(l);
+    PrintLinkedList(l);
+}
+
 
