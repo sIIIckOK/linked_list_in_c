@@ -9,7 +9,7 @@ typedef struct Node{
 typedef struct{
     Node* head;
     Node* tail;
-    int length;
+    size_t length;
 }LinkedList;
 
 Node* CreateNode(int v);

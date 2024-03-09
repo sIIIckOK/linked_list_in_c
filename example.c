@@ -53,13 +53,13 @@ int main(){
     //BubbleSort: takes in a list and sorts it in ascending order O(N^2)
     LinkedList* tempL = l;
     BubbleSort(l);
-    printf("bubbleSort\n: ");
+    printf("bubbleSort: \n");
     PrintLinkedList(l);
     //QuickSort: takes in a list and sorts it in ascendint order 
     //worstcase: O(N^2); bestcase: O(NlogN)
     l = tempL;
     QuickSort(l);
-    printf("QuickSort\n: ");
+    printf("QuickSort: \n");
     PrintLinkedList(l);
 
     //Frees all the elements in the linked list
