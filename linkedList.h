@@ -12,51 +12,51 @@ typedef struct{
     size_t length;
 }LinkedList;
 
-Node* CreateNode(int v);
+Node* LL_CreateNode(int v);
 
-Node* AppendNodeToNode(Node* prevNode, int v);
+Node* LL_AppendNodeToNode(Node* prevNode, int v);
 
-Node* GetElementFromNode(Node* h, int i);
+Node* LL_GetElementFromNode(Node* h, int i);
 
-Node* GetElement(LinkedList* l, int i);
+Node* LL_GetElement(LinkedList* l, int i);
 
-LinkedList* CreateLinkedListNonVariadic(int v);
+LinkedList* LL_CreateLinkedListNonVariadic(int v);
 
-void AppendLinkedList(LinkedList* l, int v);
+void LL_AppendLinkedList(LinkedList* l, int v);
 
-void AppfrontLinkedList(LinkedList* l, int v);
+void LL_AppfrontLinkedList(LinkedList* l, int v);
 
-int DeleteNode(LinkedList* l, int i);
+int LL_DeleteNode(LinkedList* l, int i);
 
-void PrintAllElements(LinkedList* l);
+void LL_PrintAllElements(LinkedList* l);
 
-void PrintLinkedList(LinkedList* l);
+void LL_PrintLinkedList(LinkedList* l);
 
-void ExtendLinkedList(LinkedList* l, int count, ...);
+void LL_ExtendLinkedList(LinkedList* l, int count, ...);
 
-LinkedList* CreateLinkedList(int count, ...);
+LinkedList* LL_CreateLinkedList(int count, ...);
 
-LinkedList* CreateLinkedListFromNode(Node* head, Node* tail);
+LinkedList* LL_CreateLinkedListFromNode(Node* head, Node* tail);
 
-void FreeLinkedList(LinkedList* l);
+void LL_FreeLinkedList(LinkedList* l);
 
-void SwapElements(LinkedList* l, int i1, int i2);
+void LL_SwapElements(LinkedList* l, int i1, int i2);
 
-int IndexOfByValue(LinkedList* l, int v);
+int LL_IndexOfByValue(LinkedList* l, int v);
 
-int IndexOf(LinkedList* l, Node* n);
+int LL_IndexOf(LinkedList* l, Node* n);
 
-void BubbleSort(LinkedList* l);
+void LL_BubbleSort(LinkedList* l);
 
-void InsertAt(LinkedList* l, int index, int v);
+void LL_InsertAt(LinkedList* l, int index, int v);
 
-LinkedList* CreateView(LinkedList* l, int startI, int endI);
+LinkedList* LL_CreateView(LinkedList* l, int startI, int endI);
 
-int WeakSort(LinkedList* l, int pivotIndex);
+int LL_WeakSort(LinkedList* l, int pivotIndex);
 
-int WeakSortWithRange(LinkedList* l, int lowIndex, int highIndex);
+int LL_WeakSortWithRange(LinkedList* l, int lowIndex, int highIndex);
 
-void QuickSortUnWrapped(LinkedList* l, int lowIndex, int highIndex);
+void LL_QuickSortUnWrapped(LinkedList* l, int lowIndex, int highIndex);
 
-void QuickSort(LinkedList* l);
+void LL_QuickSort(LinkedList* l);
 
