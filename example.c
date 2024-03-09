@@ -52,17 +52,6 @@ int main(){
     //Sorting
     //BubbleSort: takes in a list and sorts it in ascending order O(N^2)
     LinkedList* tempL = l;
-<<<<<<< HEAD
-    BubbleSort(l);
-    printf("bubbleSort: \n");
-    PrintLinkedList(l);
-    //QuickSort: takes in a list and sorts it in ascendint order 
-    //worstcase: O(N^2); bestcase: O(NlogN)
-    l = tempL;
-    QuickSort(l);
-    printf("QuickSort: \n");
-    PrintLinkedList(l);
-=======
     LL_BubbleSort(l);
     printf("bubbleSort: \n");
     LL_PrintLinkedList(l);
@@ -72,11 +61,3 @@ int main(){
     LL_QuickSort(l);
     printf("QuickSort: \n");
     LL_PrintLinkedList(l);
->>>>>>> a8908a3 (Add Namespace to all functions)
-
-    //Frees all the elements in the linked list
-    LL_FreeLinkedList(l);
-    //it is the user's responsibility to free the memory
-   return 0;
-}
-
