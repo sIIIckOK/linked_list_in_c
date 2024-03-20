@@ -21,7 +21,7 @@ Node* LL_AppendNodeToNode(Node* prevNode, int v){
     return pn;
 }
 
-Node* LL_GetElementFromNode(Node* h, int i){ 
+Node* LL_GetElementFromNode(Node* h, int i){
     Node* nextNode = h; 
     int tempI = i;
     while(tempI > 0){
@@ -229,7 +229,6 @@ int LL_IndexOf(LinkedList* l, Node* n){
     return -1;
 }
 
-
 void LL_BubbleSort(LinkedList* l){
     for (int j = 0; j < l->length-1; j++){
         for (int i = 0; i < l->length-1; i++){
@@ -291,45 +290,33 @@ int LL_WeakSort(LinkedList* l, int pivotIndex){
     return markerI;
 }
 
-int LL_WeakSortWithRange(LinkedList* l, int lowIndex, int highIndex){
-    int pivotIndex = highIndex;
-    Node* p = LL_GetElement(l, pivotIndex);
-
-    int markerI = pivotIndex;
-    Node* marker = LL_GetElement(l, pivotIndex);
-
-    bool trigger = true;
-    for(int i = lowIndex; i < highIndex; i++){
-        Node* currN = LL_GetElement(l, i);
-        if (p->value < currN->value && trigger == true){
-            markerI = i;
-            marker = LL_GetElement(l, markerI);
-            trigger = false; 
-        }
-        if (p->value > currN->value && trigger == false){
-            LL_SwapElements(l, markerI, i);
-            markerI++;
-            marker = LL_GetElement(l, markerI);
-        }
+int LL_WeakSortWithRange(LinkedList* l, int lo, int hi){
+    int swapI = lo;
+    int pivotI = hi;
+    Node* pivotN = LL_GetElement(l, pivotI);
+    for (int i = lo; i < hi; i++){
+        Node* curN = LL_GetElement(l, i);
+        if (curN->value <= pivotN->value){
+            LL_SwapElements(l, i, swapI);
+            swapI++;
+        } 
     }
-    LL_SwapElements(l, markerI, pivotIndex);
-    return markerI;
+    LL_SwapElements(l, swapI, pivotI);
+    return swapI;
 }
 
-
-
-void LL_QuickSortUnWrapped(LinkedList* l, int lowIndex, int highIndex){
-    if (lowIndex >= highIndex){
+void LL_QuickSortUnWrapped(LinkedList* l, int lo, int hi){
+    if (hi-lo <= 0){
         return;
     }
-    int pivotI = LL_WeakSortWithRange(l, lowIndex, highIndex); 
-
-    LL_QuickSortUnWrapped(l, lowIndex, pivotI-1);
-    LL_QuickSortUnWrapped(l, pivotI+1, highIndex);
-    return;
+    int newP = LL_WeakSortWithRange(l, lo, hi); 
+    LL_QuickSortUnWrapped(l, lo, newP-1);
+    LL_QuickSortUnWrapped(l, newP+1, hi);
 }
 
 void LL_QuickSort(LinkedList* l){
-    int pivotI = LL_WeakSortWithRange(l, 0, l->length-1); 
-    LL_QuickSortUnWrapped(l, 0, l->length-1);
+    int lo = 0;
+    int hi = l->length-1;
+    LL_QuickSortUnWrapped(l, lo, hi);
 }
+
