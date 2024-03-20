@@ -265,29 +265,18 @@ LinkedList* LL_CreateView(LinkedList* l, int startI, int endI){
     return newL;
 }
 
-int LL_WeakSort(LinkedList* l, int pivotIndex){
-    int len = l->length;
-    Node* p = LL_GetElement(l, pivotIndex);
-
-    int markerI = pivotIndex;
-    Node* marker = LL_GetElement(l, pivotIndex);
-
-    bool trigger = true;
-    for(int i = 0; i < len-1; i++){
-        Node* currN = LL_GetElement(l, i);
-        if (p->value < currN->value && trigger == true){
-            markerI = i;
-            marker = LL_GetElement(l, markerI);
-            trigger = false; 
-        }
-        if (p->value > currN->value && trigger == false){
-            LL_SwapElements(l, markerI, i);
-            markerI++;
-            marker = LL_GetElement(l, markerI);
-        }
+int LL_WeakSort(LinkedList* l, int pivotI){
+    int swapI = 0;
+    Node* pivotN = LL_GetElement(l, pivotI);
+    for (int i = 0; i < l->length; i++){
+        Node* curN = LL_GetElement(l, i);
+        if (curN->value <= pivotN->value){
+            LL_SwapElements(l, i, swapI);
+            swapI++;
+        } 
     }
-    LL_SwapElements(l, markerI, pivotIndex);
-    return markerI;
+    LL_SwapElements(l, swapI, pivotI);
+    return swapI;
 }
 
 int LL_WeakSortWithRange(LinkedList* l, int lo, int hi){
