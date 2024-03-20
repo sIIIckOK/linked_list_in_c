@@ -292,6 +292,7 @@ int LL_WeakSort(LinkedList* l, int pivotIndex){
 
 int LL_WeakSortWithRange(LinkedList* l, int lo, int hi){
     int swapI = lo;
+    LL_SwapElements(l, lo+((hi-lo)/2), hi);
     int pivotI = hi;
     Node* pivotN = LL_GetElement(l, pivotI);
     for (int i = lo; i < hi; i++){
